@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  tfm-service-rest:
+    build:
+      context: .
+      dockerfile: dockerfile
+    networks:
+    - docker_default
+networks:
+  docker_default:
+    external:
+      name: docker_default
