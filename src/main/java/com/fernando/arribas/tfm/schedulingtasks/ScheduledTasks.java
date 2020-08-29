@@ -36,7 +36,7 @@ public class ScheduledTasks {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date_today = formatter.format(date);
 
-        String result = searchService.getDataByDate(date_today);
+        String result = searchService.getDataByDate("2020-09-10");
         log.info(result);
     }
 

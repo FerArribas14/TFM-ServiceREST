@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,15 +40,17 @@ public class SearchService {
                 List<JSONObject> regions = Utils.getRegionsByCountry(countries, country,totalData);
                 for (JSONObject region : regions){
                     JSONObject output = Utils.createCountryInfoMessage(region);
-                    producer.sendMessage(output.toJSONString());
+                    //producer.sendMessage(output.toJSONString());
+                    System.out.println(output.toJSONString());
                 }
             }
             log.info("Send Data at {}", dateFormat.format(new Date()));
             return "Data get correctly";
 
-        }catch (Exception e){
-            return "Error getting data...\n" + e.getMessage();
+        }catch (HttpClientErrorException e){
+            return "Error getting data at response...\n" + e.getResponseBodyAsString();
+        } catch(Exception e) {
+            return "Error getting data\n" + e.getMessage();
         }
-
     }
 }

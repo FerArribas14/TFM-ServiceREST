@@ -1,9 +1,0 @@
-com\fernando\arribas\tfm\controller\ApiController.class
-com\fernando\arribas\tfm\kafka\KafkaMessageProducer$1.class
-com\fernando\arribas\tfm\api\SearchService.class
-com\fernando\arribas\tfm\kafka\KafkaMessageProducer.class
-com\fernando\arribas\tfm\utils\Utils.class
-com\fernando\arribas\tfm\schedulingtasks\ScheduledTasks.class
-com\fernando\arribas\tfm\httpUtils\HttpUtils.class
-com\fernando\arribas\tfm\constants\Constants.class
-com\fernando\arribas\tfm\App.class
