@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.text.SimpleDateFormat;
@@ -30,18 +29,17 @@ public class SearchService {
     public String getDataByDate(String date) throws ParseException {
 
         try {
-            List<String> countries_api = Utils.getCountries();
-            String data = HttpUtils.getCountriesData(date);
+            List<String> countries_api = Utils.getListCountries();
+            String data = HttpUtils.getCountriesTotalData(date);
 
-            JSONObject countries = Utils.parseCountriesData(date, data);
+            JSONObject countries = Utils.parseCountriesTotalData(date, data);
             JSONObject totalData = Utils.parseTotalData(data);
 
             for(String country :countries_api){
                 List<JSONObject> regions = Utils.getRegionsByCountry(countries, country,totalData);
                 for (JSONObject region : regions){
                     JSONObject output = Utils.createCountryInfoMessage(region);
-                    //producer.sendMessage(output.toJSONString());
-                    System.out.println(output.toJSONString());
+                    producer.sendMessage(output.toJSONString());
                 }
             }
             log.info("Send Data at {}", dateFormat.format(new Date()));

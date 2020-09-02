@@ -29,14 +29,14 @@ public class ScheduledTasks {
     SearchService searchService;
 
 
-    @Scheduled(fixedDelay = 3600000, initialDelay = 1000)
+    @Scheduled(fixedDelay = 600000, initialDelay = 60000)
     public void callApi() throws ParseException {
         Date date = new Date();
         log.info("Get Data at {}", dateFormat.format(date));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date_today = formatter.format(date);
 
-        String result = searchService.getDataByDate("2020-09-10");
+        String result = searchService.getDataByDate(date_today);
         log.info(result);
     }
 

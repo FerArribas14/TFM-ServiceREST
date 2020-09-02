@@ -6,7 +6,7 @@ public class HttpUtils {
 
     private static final String Url = "https://api.covid19tracking.narrativa.com/api/";
 
-    public static String getCountriesData(String date_today) {
+    public static String getCountriesTotalData(String date_today) {
         RestTemplate restTemplate;
 
         final String request_url = Url + date_today;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Utils {
-    public static JSONObject parseCountriesData(String date_today, String data) throws ParseException {
+    public static JSONObject parseCountriesTotalData(String date_today, String data) throws ParseException {
         JSONObject data_json = (JSONObject)new JSONParser().parse(data);
         JSONObject dates = (JSONObject) data_json.get("dates");
         JSONObject today = (JSONObject) dates.get(date_today);
@@ -20,7 +20,7 @@ public class Utils {
         return countries;
     }
 
-    public static List<String> getCountries() throws ParseException {
+    public static List<String> getListCountries() throws ParseException {
 
         String data = HttpUtils.getCountries();
 
